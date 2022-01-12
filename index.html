@@ -1,0 +1,110 @@
+<!DOCTYPE html><html><head><script>var StatTimer = window.StatTimer = {
+            _s: new Date().getTime(),
+            data: {},
+            stub: function(name) {
+                this['data'][name] = (new Date().getTime() - this._s) / 1000;
+            }
+        };</script><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta content="text/html;charset=UTF-8" http-equiv="content-type"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1"><meta name="format-detection" content="address=no"><link rel="stylesheet" href="static/css/icon2.css"><title></title><style>html,body{margin:0;padding:0;height:100%;font-size:12px;font-family:SimHei}ul,li{list-style:none;margin:0;padding:0}.hidden{display:none}</style></head><body><div id="page_container"></div><script type="text/javascript">window.__start = +new Date();
+        var userKey;
+        //元素是否含有某样式
+        function hasClass(element,className){
+            return !!element.className.match(new RegExp('(\\s|^)'+className+'(\\s|$)'));
+        }
+        //向元素添加新样式
+        function addClass(element,className){
+             if(hasClass(element,className) == false){
+                element.className += ' '+className;
+              }
+         }
+        //移除元素的指定样式
+        function removeClass(element,className){
+            var currentClass = element.className;
+             if(hasClass(element,className)){
+                 currentClass = currentClass.replace(new RegExp('(\\s|^)'+className+'(\\s|$)'),' ');
+                    //去除空格
+                currentClass = currentClass.replace(/(^\s*)|(\s*$)/g,'');
+                element.className = currentClass;
+            }
+        }
+        function toggleClass(element,className){  
+            if(hasClass(element,className)){  
+                removeClass(element,className);  
+            }else{  
+                addClass(element,className);  
+            }  
+        }
+        (function(){
+            var attrSplit = ';';
+            var keySplit = ':';
+            var utildecode = {
+                listAna : function(str) {
+                    if (typeof str !== 'string' || !str) {
+                        return;
+                    }
+                    var arr = str.split(attrSplit);
+                    var obj = {};
+                    var attr;
+                    for (var i = 0, l = arr.length; i < l; i++) {
+                        attr = arr[i].split(keySplit);
+                        obj[attr[0]] = attr[1];
+                    }
+                    return obj;
+
+                },
+                decodeUrlParams: function(str) {
+                    if (str.trim() === '') {
+                        return {};
+                    }
+                    var parts = str.split('&');
+                    var paramObj = {};
+                    for (var i = 0, l = parts.length; i < l; i++) {
+                        var keyValueAr = parts[i].split('=');
+                        paramObj[keyValueAr[0]] = decodeURIComponent(keyValueAr[1] || '');
+                    }
+                    return paramObj;
+                }
+
+            };
+            try {
+                var params = utildecode.decodeUrlParams(location.search.slice(1));
+                var markerObj = utildecode.listAna(params.marker);
+                document.title = markerObj.title || '腾讯地图';
+            } catch(e) {
+                document.title = '腾讯地图';
+            }
+            
+        })();
+
+        function filterXSS(e) {
+                if (!e) return e;
+
+                for (; e != unescape(e);) e = unescape(e);
+
+                for (var r = ["<", ">", "'", '"', "%3c", "%3e", "%27", "%22", "%253c", "%253e", "%2527", "%2522", "javascript", "java", "script", "\\balert\\s*\\\(.*?\\\)", "\\bconfirm\\s*\\\(.*?\\\)", "\\bprompt\\s*\\\(.*?\\\)", "\\bjavascript\\b", "\\bjavascript\\b", "\\bjavascript\\b", "document\\.write", "\\beval\\b", "\\batob\\b"],
+                    n = ["&#x3c;", "&#x3e;", "&#x27;", "&#x22;", "%26%23x3c%3B", "%26%23x3e%3B", "%26%23x27%3B", "%26%23x22%3B", "%2526%2523x3c%253B", "%2526%2523x3e%253B", "%2526%2523x27%253B", "%2526%2523x22%253B", "", "", "", "", "", "", "", "", "", "", "", ""],
+                    a = 0;
+                    a < r.length; a++) {
+                    e = e.replace(new RegExp(r[a], "gi"), n[a]);
+                }
+
+                return e;
+            };
+
+        (function() {       //获取key
+            var query = location.search.slice(1),
+                defaultkey = 'VFUBZ-JIR3D-Z2M4H-PPAGG-G5KVQ-S3F2S',
+                key = defaultkey;
+            if(query.trim() === '') {
+                userKey = defaultkey;
+                return;
+            }
+            var splitArr = query.split('&');
+            for (var i = 0, l = splitArr.length; i < l; i++) {
+                var keyValueAr = splitArr[i].split('=');
+                if(keyValueAr[0] == 'key') {
+                    key = keyValueAr[1] || defaultkey;
+                }
+            }
+            key = filterXSS(key) || defaultkey;
+            userKey = key;
+        })()</script><script type="text/javascript" src="static/js/require.js"></script><script type="text/javascript" data-cmd="md5" src="static/js/groupActivity-b1cbafebd09b8ce33e0c93b3b224e047.js"></script><script type="text/javascript" src="static/js/geolocation.min.js"></script></body></html>
