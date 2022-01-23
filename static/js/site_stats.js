@@ -2,7 +2,7 @@
 /*
 * @Author: yiruili
 * @Date:   2018-07-18 10:00:57
-* 璁垮缁熻
+* 访客统计
 */
 $(function () {
     !function () {
@@ -16,7 +16,7 @@ $(function () {
             SiteStatsSign = readCookie("SiteStatsSignKey");
         }
 
-        // IP, PV, 鐙珛璁垮
+        // IP, PV, 独立访客
         siteStatsResponse("/Public/UserOperate.php", {
             username: user_name,
             rid: 1,

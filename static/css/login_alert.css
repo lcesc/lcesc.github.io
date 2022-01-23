@@ -23,7 +23,7 @@
 .wei_newL{margin:0 15px;}
 .account_login{margin:15px;display: block;background-color: #fafafa;border-radius:3px;color: #555;font-size: 14px;text-align: center;padding:12px 0;border:1px solid #ededed;}
 .more_login_div{ width:100%; text-align:center;padding:10px 0; background-color: #FFF;/* position:absolute; left:0;bottom: 0; */}
-.more_login_div span{ display:inline-block;padding:0 40px; background:url(../image/border1.jpg) repeat-x left center; margin:0 auto;}
+.more_login_div span{ display:inline-block;padding:0 40px; background:url(../image/border.jpg) repeat-x left center; margin:0 auto;}
 .more_login_div span em{ display:inline-block;padding:0 10px; background-color:#FFF; font-size:14px; color:#999999;}
 .more_div_a{ width:160px; margin:0 auto; overflow:hidden;padding-top:10px;}
 .more_div_a a{ display:block; width:45px; height:45px; margin:0 15px; float:left; border-radius:50%; overflow:hidden}

@@ -4,7 +4,7 @@ var ajaxInfo = {
 };
 
 ajaxInfo.editPromptMsg = function () {
-    alert("璇ュ姛鑳戒笉鏀寔缂栬緫妯″紡涓嬫煡鐪嬶紒");
+    alert("该功能不支持编辑模式下查看！");
 };
 
 ajaxInfo.itemList = function (type, username, channelId, uuid) {
@@ -150,7 +150,7 @@ ajaxInfo.productList = function (type, username, channelId, big_id, sub_id, sort
         tmpUrl = tmpUrl + guige;
     }
     if (uuid) {
-        //鍟嗛摵
+        //商铺
         $.ajax({
             'url': tmpUrl,
             type: "POST",
@@ -188,7 +188,7 @@ ajaxInfo.productList = function (type, username, channelId, big_id, sub_id, sort
             }
         });
     } else {
-        //浜у搧鍒楄〃
+        //产品列表
         $.ajax({
             'url': tmpUrl,
             type: "POST",
@@ -261,7 +261,7 @@ ajaxInfo.picList = function (type, username, channelId) {
     return false;
 };
 
-//涓嬭浇鍔熻兘
+//下载功能
 ajaxInfo.fileDownList = function (type, username, channelId, big_id, sub_id) {
     username = $.trim(username);
     channelId = parseInt(channelId);
@@ -671,7 +671,7 @@ ajaxInfo.userReservationList = function (status, username) {
     });
     return false;
 };
-// 鎴戠殑鏀惰棌
+// 我的收藏
 ajaxInfo.userWapSearch = function (username, navtype, keyword, dluserid, bbs) {
     username = $.trim(username);
     keyword = $.trim(keyword);
@@ -709,7 +709,7 @@ ajaxInfo.userWapSearch = function (username, navtype, keyword, dluserid, bbs) {
     });
     return false;
 };
-//鎴戠殑鏀惰棌
+//我的收藏
 ajaxInfo.collectList = function (username, collect_channel, dluserid) {
     username = $.trim(username);
     collect_channel = parseInt(collect_channel);

@@ -4,13 +4,13 @@
 if(!document.getElementByClassName){
     function hasClass(elem, cls) {
       cls = cls || '';
-      if (cls.replace(/\s/g, '').length == 0) return false; //å½“clsæ²¡æœ‰å‚æ•°æ—¶ï¼Œè¿”å›false
+      if (cls.replace(/\s/g, '').length == 0) return false; //µ±clsÃ»ÓĞ²ÎÊıÊ±£¬·µ»Øfalse
       var ret = new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
       return ret;
     }
     document.getElementByClassName = function(className,index){
-        var nodes=document.getElementsByTagName("*");//è·å–é¡µé¢é‡Œæ‰€æœ‰å…ƒç´ ï¼Œå› ä¸ºä»–ä¼šåŒ¹é…å…¨é¡µé¢å…ƒç´ ï¼Œæ‰€ä»¥æ€§èƒ½ä¸Šæœ‰ç¼ºé™·ï¼Œä½†æ˜¯å¯ä»¥çº¦æŸä»–çš„æœç´¢èŒƒå›´ï¼›
-        var arr=[];//ç”¨æ¥ä¿å­˜ç¬¦åˆçš„classNameï¼›
+        var nodes=document.getElementsByTagName("*");//»ñÈ¡Ò³ÃæÀïËùÓĞÔªËØ£¬ÒòÎªËû»áÆ¥ÅäÈ«Ò³ÃæÔªËØ£¬ËùÒÔĞÔÄÜÉÏÓĞÈ±Ïİ£¬µ«ÊÇ¿ÉÒÔÔ¼ÊøËûµÄËÑË÷·¶Î§£»
+        var arr=[];//ÓÃÀ´±£´æ·ûºÏµÄclassName£»
         for(var i=0;i<nodes.length;i++){
             if(hasClass(nodes[i],className)) arr.push(nodes[i]);
         }
@@ -24,7 +24,7 @@ if(!document.getElementByClassName){
     }
     function removeClass( elements,cName ){
        if( hasClass( elements,cName ) ){
-          elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" )," " ); // replaceæ–¹æ³•æ˜¯æ›¿æ¢
+          elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" )," " ); // replace·½·¨ÊÇÌæ»»
        };
     }
 }
@@ -226,15 +226,15 @@ var tncode = {
     _draw_mark:function(){
         var canvas_mark = document.getElementByClassName('tncode_canvas_mark');
         var ctx_mark = canvas_mark.getContext('2d');
-        //æ¸…ç†ç”»å¸ƒ
+        //ÇåÀí»­²¼
         ctx_mark.clearRect(0,0,canvas_mark.width,canvas_mark.height);
         ctx_mark.drawImage(tncode._img, 0, tncode._img_h, tncode._mark_w,tncode._img_h,tncode._mark_offset,0,tncode._mark_w, tncode._img_h);
         var imageData = ctx_mark.getImageData(0, 0, tncode._img_w, tncode._img_h);
-          // è·å–ç”»å¸ƒçš„åƒç´ ä¿¡æ¯
-          // æ˜¯ä¸€ä¸ªä¸€ç»´æ•°ç»„ï¼ŒåŒ…å«ä»¥ RGBA é¡ºåºçš„æ•°æ®ï¼Œæ•°æ®ä½¿ç”¨  0 è‡³ 255ï¼ˆåŒ…å«ï¼‰çš„æ•´æ•°è¡¨ç¤º
-          // å¦‚ï¼šå›¾ç‰‡ç”±ä¸¤ä¸ªåƒç´ æ„æˆï¼Œä¸€ä¸ªåƒç´ æ˜¯ç™½è‰²ï¼Œä¸€ä¸ªåƒç´ æ˜¯é»‘è‰²ï¼Œé‚£ä¹ˆ data ä¸º
+          // »ñÈ¡»­²¼µÄÏñËØĞÅÏ¢
+          // ÊÇÒ»¸öÒ»Î¬Êı×é£¬°üº¬ÒÔ RGBA Ë³ĞòµÄÊı¾İ£¬Êı¾İÊ¹ÓÃ  0 ÖÁ 255£¨°üº¬£©µÄÕûÊı±íÊ¾
+          // Èç£ºÍ¼Æ¬ÓÉÁ½¸öÏñËØ¹¹³É£¬Ò»¸öÏñËØÊÇ°×É«£¬Ò»¸öÏñËØÊÇºÚÉ«£¬ÄÇÃ´ data Îª
           // [255,255,255,255,0,0,0,255]
-          // è¿™ä¸ªä¸€ç»´æ•°ç»„å¯ä»¥çœ‹æˆæ˜¯ä¸¤ä¸ªåƒç´ ä¸­RBGAé€šé“çš„æ•°ç»„çš„é›†åˆå³:
+          // Õâ¸öÒ»Î¬Êı×é¿ÉÒÔ¿´³ÉÊÇÁ½¸öÏñËØÖĞRBGAÍ¨µÀµÄÊı×éµÄ¼¯ºÏ¼´:
           // [R,G,B,A].concat([R,G,B,A])
         var data = imageData.data;
         //alert(data.length/4);
@@ -242,16 +242,16 @@ var tncode = {
         for(var j = 0; j < x; j++) {
             var ii = 1,k1=-1;
             for(var k=0;k<y&&k>=0&&k>k1;){
-              // å¾—åˆ° RGBA é€šé“çš„å€¼
+              // µÃµ½ RGBA Í¨µÀµÄÖµ
                 var i = (j*y+k)*4;
                 k+=ii;
                 var r = data[i]
                   , g = data[i+1]
                   , b = data[i+2];
-                // æˆ‘ä»¬ä»æœ€ä¸‹é¢é‚£å¼ é¢œè‰²ç”Ÿæˆå™¨ä¸­å¯ä»¥çœ‹åˆ°åœ¨å›¾ç‰‡çš„å³ä¸Šè§’åŒºåŸŸï¼Œæœ‰ä¸€å°å—åœ¨
-                // è‚‰çœ¼çš„è§‚å¯Ÿä¸‹åŸºæœ¬éƒ½æ˜¯ç™½è‰²çš„ï¼Œæ‰€ä»¥æˆ‘åœ¨è¿™é‡ŒæŠŠ RGB å€¼éƒ½åœ¨ 245 ä»¥ä¸Šçš„
-                // çš„å®šä¹‰ä¸ºç™½è‰²
-                // å¤§å®¶ä¹Ÿå¯ä»¥è‡ªå·±å®šä¹‰çš„æ›´ç²¾ç¡®ï¼Œæˆ–è€…æ›´å®½æ³›ä¸€äº›
+                // ÎÒÃÇ´Ó×îÏÂÃæÄÇÕÅÑÕÉ«Éú³ÉÆ÷ÖĞ¿ÉÒÔ¿´µ½ÔÚÍ¼Æ¬µÄÓÒÉÏ½ÇÇøÓò£¬ÓĞÒ»Ğ¡¿éÔÚ
+                // ÈâÑÛµÄ¹Û²ìÏÂ»ù±¾¶¼ÊÇ°×É«µÄ£¬ËùÒÔÎÒÔÚÕâÀï°Ñ RGB Öµ¶¼ÔÚ 245 ÒÔÉÏµÄ
+                // µÄ¶¨ÒåÎª°×É«
+                // ´ó¼ÒÒ²¿ÉÒÔ×Ô¼º¶¨ÒåµÄ¸ü¾«È·£¬»òÕß¸ü¿í·ºÒ»Ğ©
                 if(r+g+b<200) data[i+3] = 0;
                 else{
                     var arr_pix = [1,-5];
@@ -305,11 +305,11 @@ var tncode = {
         obj.innerHTML = msg;
         var setOpacity = function (ele, opacity) {
             if (ele.style.opacity != undefined) {
-                ///å…¼å®¹FFå’ŒGGå’Œæ–°ç‰ˆæœ¬IE
+                ///¼æÈİFFºÍGGºÍĞÂ°æ±¾IE
                 ele.style.opacity = opacity / 100;
 
             } else {
-                ///å…¼å®¹è€ç‰ˆæœ¬ie
+                ///¼æÈİÀÏ°æ±¾ie
                 ele.style.filter = "alpha(opacity=" + opacity + ")";
             }
         };
@@ -367,7 +367,7 @@ var tncode = {
         var list = document.getElementsByTagName('script');
         for (var i in list) {
             var  d=list[i];
-            if(d.src.indexOf('tn_code')!==-1){//jsæ–‡ä»¶åä¸€å®šè¦å¸¦è¿™ä¸ªå­—ç¬¦
+            if(d.src.indexOf('tn_code')!==-1){//jsÎÄ¼şÃûÒ»¶¨Òª´øÕâ¸ö×Ö·û
                 var arr = d.src.split('tn_code');
                 return arr[0];
             }
@@ -388,7 +388,7 @@ var tncode = {
         var timestamp = Date.parse(new Date());
         var img_url = "/dom/verify_check.php?username="+user_name+"&timestamp"+timestamp+"&ajax=1&t="+Math.random();
         // var img_url = tncode._currentUrl()+"tncode.php?t="+Math.random();
-        if(!isSupportWebp){//æµè§ˆå™¨ä¸æ”¯æŒwebp
+        if(!isSupportWebp){//ä¯ÀÀÆ÷²»Ö§³Öwebp
             img_url+="&nowebp=1";
         }
         tncode._img.src = img_url;
@@ -396,7 +396,7 @@ var tncode = {
             tncode._draw_fullbg();
             var canvas_mark = document.getElementByClassName('tncode_canvas_mark');
             var ctx_mark = canvas_mark.getContext('2d');
-            //æ¸…ç†ç”»å¸ƒ
+            //ÇåÀí»­²¼
             ctx_mark.clearRect(0,0,canvas_mark.width,canvas_mark.height);
             tncode._img_loaded = true;
             obj = document.getElementByClassName('tncode_canvas_bg');
@@ -443,7 +443,7 @@ var tncode = {
             _this.show();
             // for (var i in objs) {
             //     var o = objs[i];
-            //     //o.innerHTML = 'æ‹–åŠ¨æŒ‰é’®è¿›è¡ŒéªŒè¯';
+            //     //o.innerHTML = 'ÍÏ¶¯°´Å¥½øĞĞÑéÖ¤';
             //     // tncode._bind(o,'touchstart',_this.show);
             //     _this.show();
             //     // tncode._bind(o,'click',_this.show);

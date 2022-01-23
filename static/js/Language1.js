@@ -1,3 +1,3 @@
 var $PLa = {
-    buNengWeiKong: "ä¸èƒ½ä¸ºç©º!"
+    buNengWeiKong: "²»ÄÜÎª¿Õ!"
 };

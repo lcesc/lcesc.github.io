@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>è¯­éŸ³æœç´¢</title>
+	<meta charset="gb2312">
+	<title>ÓïÒôËÑË÷</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	<link rel="stylesheet" type="text/css" href="static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="static/css/tapeStyle.css">
@@ -38,13 +38,13 @@
 				var t = $(this),t_text = t.parents(".tapeCenter").find("h5");
 				if(t.hasClass("cur")){
 					t.removeClass("cur");
-					t_text.text("ç‚¹å‡»æŒ‰é’®å¼€å§‹å½•éŸ³");
+					t_text.text("µã»÷°´Å¥¿ªÊ¼Â¼Òô");
 					event.preventDefault();
 				    END = new Date().getTime();				    
 				    if((END - START) < 300){
 				        END = 0;
 				        START = 0;
-				        //å°äº300msï¼Œä¸å½•éŸ³
+				        //Ğ¡ÓÚ300ms£¬²»Â¼Òô
 				        clearTimeout(recordTimer);
 				    }else{
 				        wx.stopRecord({						
@@ -62,7 +62,7 @@
 	   				//$(".scheduleAlt").show();
 				}else{
 					t.addClass("cur");
-					t_text.text("ç‚¹å‡»æŒ‰é’®ç»“æŸå½•éŸ³");
+					t_text.text("µã»÷°´Å¥½áÊøÂ¼Òô");
 					  event.preventDefault();
 				    START = new Date().getTime();
 				    recordTimer = setTimeout(function(){
@@ -71,20 +71,20 @@
 				                localStorage.rainAllowRecord = 'true';      
 				            },
 				            cancel: function () {
-				                alert('ç”¨æˆ·æ‹’ç»æˆæƒå½•éŸ³');
+				                alert('ÓÃ»§¾Ü¾øÊÚÈ¨Â¼Òô');
 				            }
 				        });
 				    },300);
 				}
 			})
 		})
-		//ä¸Šä¼ å½•éŸ³
+		//ÉÏ´«Â¼Òô
 		function uploadVoice(voice){
-		    //è°ƒç”¨å¾®ä¿¡çš„ä¸Šä¼ å½•éŸ³æ¥å£æŠŠæœ¬åœ°å½•éŸ³å…ˆä¸Šä¼ åˆ°å¾®ä¿¡çš„æœåŠ¡å™¨
-		    //ä¸è¿‡ï¼Œå¾®ä¿¡åªä¿ç•™3å¤©ï¼Œè€Œæˆ‘ä»¬éœ€è¦é•¿æœŸä¿å­˜ï¼Œæˆ‘ä»¬éœ€è¦æŠŠèµ„æºä»å¾®ä¿¡æœåŠ¡å™¨ä¸‹è½½åˆ°è‡ªå·±çš„æœåŠ¡å™¨
+		    //µ÷ÓÃÎ¢ĞÅµÄÉÏ´«Â¼Òô½Ó¿Ú°Ñ±¾µØÂ¼ÒôÏÈÉÏ´«µ½Î¢ĞÅµÄ·şÎñÆ÷
+		    //²»¹ı£¬Î¢ĞÅÖ»±£Áô3Ìì£¬¶øÎÒÃÇĞèÒª³¤ÆÚ±£´æ£¬ÎÒÃÇĞèÒª°Ñ×ÊÔ´´ÓÎ¢ĞÅ·şÎñÆ÷ÏÂÔØµ½×Ô¼ºµÄ·şÎñÆ÷
 		    wx.uploadVoice({	    
-		        localId:voice, // éœ€è¦ä¸Šä¼ çš„éŸ³é¢‘çš„æœ¬åœ°IDï¼Œç”±stopRecordæ¥å£è·å¾—
-		        isShowProgressTis: 1, // é»˜è®¤ä¸º1ï¼Œæ˜¾ç¤ºè¿›åº¦æç¤º
+		        localId:voice, // ĞèÒªÉÏ´«µÄÒôÆµµÄ±¾µØID£¬ÓÉstopRecord½Ó¿Ú»ñµÃ
+		        isShowProgressTis: 1, // Ä¬ÈÏÎª1£¬ÏÔÊ¾½ø¶ÈÌáÊ¾
 		        success: function (res) {		
 				 	var ser = res.serverId;		 
 				 	translateVoice(voice);
@@ -94,15 +94,15 @@
 		}
 		function downloadVoice(ser){	
 			wx.downloadVoice({
-				serverId: ser, // éœ€è¦ä¸‹è½½çš„éŸ³é¢‘çš„æœåŠ¡å™¨ç«¯IDï¼Œç”±uploadVoiceæ¥å£è·å¾—
-				isShowProgressTips: 1, // é»˜è®¤ä¸º1ï¼Œæ˜¾ç¤ºè¿›åº¦æç¤º
+				serverId: ser, // ĞèÒªÏÂÔØµÄÒôÆµµÄ·şÎñÆ÷¶ËID£¬ÓÉuploadVoice½Ó¿Ú»ñµÃ
+				isShowProgressTips: 1, // Ä¬ÈÏÎª1£¬ÏÔÊ¾½ø¶ÈÌáÊ¾
 				success: function (res) {
-					var localId = res.localId; // è¿”å›éŸ³é¢‘çš„æœ¬åœ°ID
+					var localId = res.localId; // ·µ»ØÒôÆµµÄ±¾µØID
 					translateVoice(localId);
 				}
 			});
 		}
-		//æ³¨å†Œå¾®ä¿¡æ’­æ”¾å½•éŸ³ç»“æŸäº‹ä»¶ã€ä¸€å®šè¦æ”¾åœ¨wx.readyå‡½æ•°å†…ã€‘
+		//×¢²áÎ¢ĞÅ²¥·ÅÂ¼Òô½áÊøÊÂ¼ş¡¾Ò»¶¨Òª·ÅÔÚwx.readyº¯ÊıÄÚ¡¿
 		function onVoicePlayEnd(){
 			wx.onVoicePlayEnd({
 			    success: function (res) {
@@ -110,13 +110,13 @@
 			    }
 			});
 		}
-		//è¯†åˆ«éŸ³é¢‘å¹¶è¿”å›è¯†åˆ«ç»“æœæ¥å£
+		//Ê¶±ğÒôÆµ²¢·µ»ØÊ¶±ğ½á¹û½Ó¿Ú
 		function translateVoice(ser){
 			wx.translateVoice({
-			   	localId: ser, // éœ€è¦è¯†åˆ«çš„éŸ³é¢‘çš„æœ¬åœ°Idï¼Œç”±å½•éŸ³ç›¸å…³æ¥å£è·å¾—
-		    	isShowProgressTips: 1, // é»˜è®¤ä¸º1ï¼Œæ˜¾ç¤ºè¿›åº¦æç¤º
+			   	localId: ser, // ĞèÒªÊ¶±ğµÄÒôÆµµÄ±¾µØId£¬ÓÉÂ¼ÒôÏà¹Ø½Ó¿Ú»ñµÃ
+		    	isShowProgressTips: 1, // Ä¬ÈÏÎª1£¬ÏÔÊ¾½ø¶ÈÌáÊ¾
 			    success: function (res) {	
-			        // alert(res.translateResult); // è¯­éŸ³è¯†åˆ«çš„ç»“æœ               
+			        // alert(res.translateResult); // ÓïÒôÊ¶±ğµÄ½á¹û               
 					var data = res.translateResult;			
 					data=data.substring(0,data.length-1); 					
 					//window.location.href = 'http://zhangjk88888.wap.fenxiaoabc.cn/wap/web_search.php?username=zhangjk88888&keyword='+data+'&navtype=';
@@ -133,10 +133,10 @@
 <body>
 	<div class="tapeAlt">
 		<div class="tapeCenter">
-			<a href="wap_zhangjk888881.html" class="clear">x</a>
-			<h2 class="tape_tit">è¯·å¤§å£°è¯´å‡ºä½ æƒ³è¦æ‰¾ä»€ä¹ˆ</h2>
+			<a href="wap_zhangjk888882.html" class="clear">x</a>
+			<h2 class="tape_tit">Çë´óÉùËµ³öÄãÏëÒªÕÒÊ²Ã´</h2>
 			<div class="tape_text">
-				<h5>ç‚¹å‡»æŒ‰é’®å¼€å§‹å½•éŸ³</h5>				
+				<h5>µã»÷°´Å¥¿ªÊ¼Â¼Òô</h5>				
 				<p class="tape_icon">
 					<a id="talk_btn" href="###"></a>										
 				</p>
@@ -148,7 +148,7 @@
 				<span class="pic">
 					<img src="static/picture/loading.gif">
 				</span>
-				<em>è¯†åˆ«ä¸­...</em>
+				<em>Ê¶±ğÖĞ...</em>
 			</div>
 		</div>
 	</div>
