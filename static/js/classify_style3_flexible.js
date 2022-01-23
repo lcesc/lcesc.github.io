@@ -35,7 +35,7 @@
         var isIPhone = win.navigator.appVersion.match(/iphone/gi);
         var devicePixelRatio = win.devicePixelRatio;
         if (isIPhone) {
-            // iOS下，对于2�?3的屏，用2倍的方案，其余的�?1倍方�?
+            // iOS涓嬶紝瀵逛簬2鍜�3鐨勫睆锛岀敤2鍊嶇殑鏂规锛屽叾浣欑殑鐢�1鍊嶆柟妗�
             if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
                 dpr = 3;
             } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
@@ -44,7 +44,7 @@
                 dpr = 1;
             }
         } else {
-            // 其他设备下，仍旧使用1倍的方案
+            // 鍏朵粬璁惧涓嬶紝浠嶆棫浣跨敤1鍊嶇殑鏂规
             dpr = 1;
         }
         scale = 1 / dpr;

@@ -3,15 +3,15 @@ function fengxiang(){
         var is_weixn = (ua.match(/MicroMessenger/i)=="micromessenger") ? 1 : 0;
     if(is_weixn || wap_userid == 424150){
         var id           = $('input[id=id]').val();
-        var fx_display   = $('input[id=fxtag]').val() > 0 ? 'display:none' : ''; //ÍÆ¹ã²úÆ·±ê¼Ç
-        var fx_width     = $('input[id=fxtag]').val() > 0 ? 'width:100%' : ''; //ÍÆ¹ã²úÆ·±ê¼Ç
+        var fx_display   = $('input[id=fxtag]').val() > 0 ? 'display:none' : ''; //æ¨å¹¿äº§å“æ ‡è®°
+        var fx_width     = $('input[id=fxtag]').val() > 0 ? 'width:100%' : ''; //æ¨å¹¿äº§å“æ ‡è®°
         if (id) {
-            //µ¯´°ÊÇ·ñÒÑ´æÔÚ
+            //å¼¹çª—æ˜¯å¦å·²å­˜åœ¨
             if ($('.shareAlert_boxshadow').length > 0) {
                 $('.shareAlert_boxshadow').show();
             } else {
                 var fxWrap = $('body');
-                var span = '<div class="shareAlert_boxshadow"><div class="alert_share"><ul class="alert_share_body"><li style="'+fx_display+'"><div class="img"><img src="/templates/wap/publish_coupon/images/sharef.png" onclick="wxShareFriend()"></div><div class="txt">Î¢ĞÅºÃÓÑ</div></li><li style="'+fx_width+'"><div class="img"><img src="/templates/wap/publish_coupon/images/shares.png" onclick="wxSaveShare()"></div><div class="txt">±£´æº£±¨</div></li></ul><div class="alert_share_foot" onclick="wxShareComplete()">È¡Ïû</div></div></div>';
+                var span = '<div class="shareAlert_boxshadow"><div class="alert_share"><ul class="alert_share_body"><li style="'+fx_display+'"><div class="img"><img src="/templates/wap/publish_coupon/images/sharef.png" onclick="wxShareFriend()"></div><div class="txt">å¾®ä¿¡å¥½å‹</div></li><li style="'+fx_width+'"><div class="img"><img src="/templates/wap/publish_coupon/images/shares.png" onclick="wxSaveShare()"></div><div class="txt">ä¿å­˜æµ·æŠ¥</div></li></ul><div class="alert_share_foot" onclick="wxShareComplete()">å–æ¶ˆ</div></div></div>';
                 fxWrap.append(span);
             }
         } else {
@@ -49,65 +49,65 @@ function fengxiang(){
         });
     }
 }
-//·¢ËÍ¸øºÃÓÑ
+//å‘é€ç»™å¥½å‹
 function wxShareFriend() {
     fJson.weixin();
 }
-//±£´æ·ÖÏíÔ¤ÀÀ
+//ä¿å­˜åˆ†äº«é¢„è§ˆ
 function wxSaveShare() {
-    var id          = $('input[id=id]').val();                                                     // php×ÔĞĞchannel_typeÇø·Ö
-    var tag         = $('input[id=tag_020]').val() ? 1 : 0;                                        // Çø·Ö020ÓëÎÄÕÂ±ê¼Ç
-    var submit_type = $('input[id=submit_type]').val() > 0 ? 1 : 0;                                // Çø·ÖÍÅ¹º±ê¼Ç
-    var success_id  = $('input[id=success_id]').val() > 0 ? $('input[id=success_id]').val() : 0;   // ·ÖÏíÆ´ÍÅ±ê¼Ç
-    var fxtag       = $('input[id=fxtag]').val() > 0 ? 1 : 0;                                      // ÍÆ¹ã²úÆ·±ê¼Ç
+    var id          = $('input[id=id]').val();                                                     // phpè‡ªè¡Œchannel_typeåŒºåˆ†
+    var tag         = $('input[id=tag_020]').val() ? 1 : 0;                                        // åŒºåˆ†020ä¸æ–‡ç« æ ‡è®°
+    var submit_type = $('input[id=submit_type]').val() > 0 ? 1 : 0;                                // åŒºåˆ†å›¢è´­æ ‡è®°
+    var success_id  = $('input[id=success_id]').val() > 0 ? $('input[id=success_id]').val() : 0;   // åˆ†äº«æ‹¼å›¢æ ‡è®°
+    var fxtag       = $('input[id=fxtag]').val() > 0 ? 1 : 0;                                      // æ¨å¹¿äº§å“æ ‡è®°
 
-    alert_layer();            // ÇëÇó¶¯»­
-    $('.reloadShare').hide(); // ÖØĞÂÇëÇó
+    alert_layer();            // è¯·æ±‚åŠ¨ç”»
+    $('.reloadShare').hide(); // é‡æ–°è¯·æ±‚
 
     $.post("/wap/shareAlert/GetShareThumbnail.php?name="+user_name, {'id':id, 'ch_id':css_channel_id,'user_id':wap_userid,'tag':tag,'submit_type':submit_type,'success_id':success_id,'fxtag':fxtag},
     function(data){
         var obj = JSON.parse(data);
 
-        del_layer();                                // ¹Ø±Õ¶¯»­
+        del_layer();                                // å…³é—­åŠ¨ç”»
 
-        wxShareComplete();                          // ¹Ø±Õµ¯´°°´Å¥×é
+        wxShareComplete();                          // å…³é—­å¼¹çª—æŒ‰é’®ç»„
 
         if (obj == 1) {
-            showAllzz('·şÎñÆ÷·±Ã¦£¬ÇëÉÔºóÔÙÊÔ£¡');    // ²ÎÊıÓĞÎó£¬»æÖÆÊ§°Ü
+            showAllzz('æœåŠ¡å™¨ç¹å¿™ï¼Œè¯·ç¨åå†è¯•ï¼');    // å‚æ•°æœ‰è¯¯ï¼Œç»˜åˆ¶å¤±è´¥
         } else if(obj == 2) {
-            fJson.weixin();                         // ´ò¿ªÔ­·ÖÏí
+            fJson.weixin();                         // æ‰“å¼€åŸåˆ†äº«
         } else if(obj == 3) {
-            reloadWxShareImg();                     // ÖØĞÂÇëÇó
+            reloadWxShareImg();                     // é‡æ–°è¯·æ±‚
         } else {
             if ($('.shareAlert_Img').length > 0) {
                 $('.shareAlert_Img').find('img').attr('src',obj.returnUrl);
                 $('.shareAlert_Img').show();
             } else {
                 var fxWrap = $('body');
-                var span = '<div class="shareAlert_Img"><img src="'+obj.returnUrl+'"><p class="keep">³¤°´Í¼Æ¬£¬±£´æµ½Ïà²á</p><p class="closeShare" onclick="closeShareImg'+"('"+obj.unlink+"')"+'">X</p></div>';
+                var span = '<div class="shareAlert_Img"><img src="'+obj.returnUrl+'"><p class="keep">é•¿æŒ‰å›¾ç‰‡ï¼Œä¿å­˜åˆ°ç›¸å†Œ</p><p class="closeShare" onclick="closeShareImg'+"('"+obj.unlink+"')"+'">X</p></div>';
                 fxWrap.append(span);
             }
         }
     });
 }
-// È¡Ïû·ÖÏí
+// å–æ¶ˆåˆ†äº«
 function wxShareComplete() {
     $('.shareAlert_boxshadow').hide();
 }
-// ÖØĞÂÇëÇóÍ¼Æ¬
+// é‡æ–°è¯·æ±‚å›¾ç‰‡
 function reloadWxShareImg() {
     if ($('.reloadShare').length > 0) {
         $('.reloadShare').show();
     } else {
         var fxWrap = $('body');
-        var span = '<div class="reloadShare" onclick="closeShareImg()"><p class="keep" onclick="wxSaveShare()">Í¼Æ¬²»´æÔÚ£¬Çëµã»÷ÖØÊÔ</p></div>';
+        var span = '<div class="reloadShare" onclick="closeShareImg()"><p class="keep" onclick="wxSaveShare()">å›¾ç‰‡ä¸å­˜åœ¨ï¼Œè¯·ç‚¹å‡»é‡è¯•</p></div>';
         fxWrap.append(span);
     }
 }
-// ¹Ø±Õ·ÖÏíÍ¼
+// å…³é—­åˆ†äº«å›¾
 function closeShareImg(unlink){
     unlink = unlink ? unlink : '';
-    //É¾³ıÁÙÊ±·ÖÏíÍ¼
+    //åˆ é™¤ä¸´æ—¶åˆ†äº«å›¾
     if (unlink) { 
         $.post("/wap/shareAlert/GetShareThumbnail.php?name="+user_name, {'unlink':unlink},
         function(data){});
@@ -127,7 +127,7 @@ if (tmp_win.indexOf("?") != -1) {
 }
 var fJson = {
     'tenxT' : function(){
-         // var _t = encodeURI(document.title);  var _url = encodeURI(window.location+_url_fx); var _appkey = '801cf76d3cfc44ada52ec13114e84a96'; var _site = encodeURI; var _pic = ''; var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic; window.open( _u,'×ª²¥µ½ÌÚÑ¶Î¢²©', 'width=700, height=580, top=180, left=320, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+         // var _t = encodeURI(document.title);  var _url = encodeURI(window.location+_url_fx); var _appkey = '801cf76d3cfc44ada52ec13114e84a96'; var _site = encodeURI; var _pic = ''; var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic; window.open( _u,'è½¬æ’­åˆ°è…¾è®¯å¾®åš', 'width=700, height=580, top=180, left=320, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
         //http://connect.qq.com/widget/shareqq/index.html?url=https://www.jq22.com/demo/myshare201704242303/&title=content title&source=content site&desc=&pics=
         window.open('http://connect.qq.com/widget/shareqq/index.html?url='+encodeURIComponent(document.location.href+_url_fx)+'&title='+encodeURI(document.title)+'&source=&desc='+encodeURIComponent(document.title)+'&pics=');
     },
@@ -156,7 +156,7 @@ var fJson = {
     }
 };
 
-/**Î¢ÃûÆ¬ÖĞµÄ·ÖÏí**/
+/**å¾®åç‰‡ä¸­çš„åˆ†äº«**/
 $(function(){
     $("#evTWeiDl").on('click','dt',function(){
         var share = $(this).data("share");
@@ -165,7 +165,7 @@ $(function(){
             if(is_weixn){
                 fengxiang();
             }else{
-                showAllzz("´Ë¹¦ÄÜÖ»ÔÚÎ¢ĞÅÏÂ¿ÉÓÃ£¡");
+                showAllzz("æ­¤åŠŸèƒ½åªåœ¨å¾®ä¿¡ä¸‹å¯ç”¨ï¼");
             }
         } else if (share ==2){
             var imgsrc = $(this).find("img").attr("src"),
@@ -176,7 +176,7 @@ $(function(){
         }
     });
 });
-/**app·ÖÏíµÄ·½·¨**/
+/**appåˆ†äº«çš„æ–¹æ³•**/
 function app_share_fn2(){
     var title=document.title;
     var url=window.location.href;

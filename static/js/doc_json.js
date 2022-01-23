@@ -1,9 +1,9 @@
-//¸ù¾İÌõ¼şÊä³öÁĞ±íÄÚÈİ
+//æ ¹æ®æ¡ä»¶è¾“å‡ºåˆ—è¡¨å†…å®¹
 var filtrateFun = {
-	addFiltrateList : function(big,middle,small){	//É¸Ñ¡ÁĞ±íÊä³öº¯Êı
+	addFiltrateList : function(big,middle,small){	//ç­›é€‰åˆ—è¡¨è¾“å‡ºå‡½æ•°
 		var l = arguments.length,
 			x = "",sList = "",sLi = "",sDt = "",curVal = "";
-		if(l == 0){//É¸Ñ¡¶ş¼¶ÁĞ±íÊä³ö
+		if(l == 0){//ç­›é€‰äºŒçº§åˆ—è¡¨è¾“å‡º
 			var j = proF.pClass;
 			if(proF.clickVal.class[0]){
 				curVal = proF.clickVal.class[0];
@@ -24,7 +24,7 @@ var filtrateFun = {
 			sList = '<dl><dd><ul>'+ sDt + sLi +'</ul></dd></dl>';
 			return sList;
 		}
-		if(l == 1){		//É¸Ñ¡Èı¼¶ÁĞ±íÊä³ö
+		if(l == 1){		//ç­›é€‰ä¸‰çº§åˆ—è¡¨è¾“å‡º
 			var j = proF.pClass[big]["sub"];
 			if(proF.clickVal.class[1]){
 				curVal = proF.clickVal.class[1];
@@ -92,7 +92,7 @@ var filtrateFun = {
 };
 
 $(function(){
-	//µÃµ½domÔªËØ
+	//å¾—åˆ°domå…ƒç´ 
 	var filtrateBut = $("#filtrateBut"),
 		wrap = $("#filtrateListWrap"),
 		orderClassify = $("#orderClassify"),
@@ -100,11 +100,11 @@ $(function(){
 		firstClassify = $("#firstClassify"),
 		secondClassify = $("#secondClassify"),
 		thirdClassify = $("#thirdClassify");
-		//¸ødomÔªËØ°ó¶¨ÊÂ¼ş
+		//ç»™domå…ƒç´ ç»‘å®šäº‹ä»¶
 		filtrateBut.on({
 			click : function(){
 				var curBut = $(this),dataId = curBut.data("id"),open = curBut.data("open");
-				//¸ù¾İµ¥»÷Ìí¼ÓÄÚÈİÁĞ±í
+				//æ ¹æ®å•å‡»æ·»åŠ å†…å®¹åˆ—è¡¨
 				switch(dataId){
 					case "secondClassify" :
 						if(secondClassify.data("add") != 1){
@@ -123,7 +123,7 @@ $(function(){
 						}
 					break;
 				}
-				//ÅĞ¶ÏÊÇ·ñ´ò¿ª
+				//åˆ¤æ–­æ˜¯å¦æ‰“å¼€
 				if(open == 1){
 					curBut.data("open",0).removeClass("open-select");
 					wrap.animate({height:0},300,function(){
@@ -155,7 +155,7 @@ $(function(){
 				}
 			}
 		},"li");
-	//¸ø¶ş¼¶ÁĞ±íÌí¼Óµ¥»÷ÊÂ¼ş
+	//ç»™äºŒçº§åˆ—è¡¨æ·»åŠ å•å‡»äº‹ä»¶
 		secondClassify.on({
 			click : function(){
 				var cLi = $(this),
@@ -197,7 +197,7 @@ $(function(){
 				}
 			}
 		},"li");
-		//¸øÈı¼¶ÁĞ±íÌí¼Óµ¥»÷ÊÂ¼ş
+		//ç»™ä¸‰çº§åˆ—è¡¨æ·»åŠ å•å‡»äº‹ä»¶
 		thirdClassify.on({
 			click : function(){
 				var cLi = $(this),

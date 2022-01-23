@@ -1,7 +1,7 @@
 var iGuestBookErrorCount = 0;
 var tncode_div =false;
 /**
-	·¢²¼ÏûÏ¢²Ù×÷
+	å‘å¸ƒæ¶ˆæ¯æ“ä½œ
 */
 $("#guestBook").on("click", function() {
 	if ((iGuestBook != 1 && iUserUserId) || iGuestBook == 1) {
@@ -12,7 +12,7 @@ $("#guestBook").on("click", function() {
 				$(this).css({'height':win_h})
 			});
 	} else {
-		showAllzz("ÇëÏÈµÇÂ¼ºóÔÚ·¢±íÁôÑÔ£¡");
+		showAllzz("è¯·å…ˆç™»å½•ååœ¨å‘è¡¨ç•™è¨€ï¼");
 		window.location.href="/dom/denglu.php?username="+user_name+"&wap=1";
 		return false;
 	}
@@ -26,7 +26,7 @@ $('#title').on('blur',function(){
 	var title = $.trim($("#title").val());
 
 	if (title == '') {
-		$("#titleError").html('<span class="caution">±êÌâ²»ÄÜÎª¿Õ£¡</span>');
+		$("#titleError").html('<span class="caution">æ ‡é¢˜ä¸èƒ½ä¸ºç©ºï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -38,11 +38,11 @@ $('#name').on('blur',function(){
 	var name = $.trim($("#name").val());
 
 	if (name == '') {
-		$("#nameError").html('<span class="caution">ÄúµÄĞÕÃû²»ÄÜÎª¿Õ£¡</span>');
+		$("#nameError").html('<span class="caution">æ‚¨çš„å§“åä¸èƒ½ä¸ºç©ºï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else if(public.getStringLength(name) < 4) {
-		$("#nameError").html('<span class="caution">ÄúµÄĞÕÃû²»ÄÜĞ¡ÓÚ4¸ö×Ö·û£¡</span>');
+		$("#nameError").html('<span class="caution">æ‚¨çš„å§“åä¸èƒ½å°äº4ä¸ªå­—ç¬¦ï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -54,11 +54,11 @@ $('#tel').on('blur',function(){
 	var tel = $.trim($("#tel").val());
 
 	if (tel == '') {
-		$("#telError").html('<span class="caution">ÄúµÄµç»°²»ÄÜÎª¿Õ,²»ÏÔÊ¾ÔÚÁôÑÔÄÚÈİÀï£¡</span>');
+		$("#telError").html('<span class="caution">æ‚¨çš„ç”µè¯ä¸èƒ½ä¸ºç©º,ä¸æ˜¾ç¤ºåœ¨ç•™è¨€å†…å®¹é‡Œï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else if(public.yzTel(tel)==false) {
-		$("#telError").html('<span class="caution">ÄúµÄµç»°¸ñÊ½ÓĞÎó£¡</span>');
+		$("#telError").html('<span class="caution">æ‚¨çš„ç”µè¯æ ¼å¼æœ‰è¯¯ï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -70,7 +70,7 @@ $('#con').on('blur',function(){
 	var con = $.trim($("#con").val());
 
 	if (con == '') {
-		$("#conError").html('<span class="caution">ÄÚÈİ²»ÄÜÎª¿Õ£¡</span>');
+		$("#conError").html('<span class="caution">å†…å®¹ä¸èƒ½ä¸ºç©ºï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -82,7 +82,7 @@ $('#yzm').on('blur',function(){
 	var yzm = $.trim($("#yzm").val());
 
 	if (yzm == '') {
-		$("#yzmError").html('<span class="caution">ÑéÖ¤Âë²»ÄÜÎª¿Õ£¡</span>');
+		$("#yzmError").html('<span class="caution">éªŒè¯ç ä¸èƒ½ä¸ºç©ºï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -122,7 +122,7 @@ if(form_str){
 	})
 }
 /**
-	»Ø¸´ÏûÏ¢²Ù×÷
+	å›å¤æ¶ˆæ¯æ“ä½œ
 */
 function conBind() {
   $(".returnAbut").each(function() {
@@ -134,7 +134,7 @@ function conBind() {
 
 					$("#reGuestBook").css({'left':0,'height':$("body").height()});
 				} else {
-					showAllzz("ÇëÏÈµÇÂ¼ºóÔÚ·¢±í»Ø¸´£¡");
+					showAllzz("è¯·å…ˆç™»å½•ååœ¨å‘è¡¨å›å¤ï¼");
 					window.location.href="/dom/denglu.php?username="+user_name+"&wap=1";
 					return false;
 				}
@@ -148,13 +148,13 @@ function conBind() {
 				if (!id) return false;
 
 				if (readCookie('GUESTBOOK_'+user_name+'_'+id)) {
-					showAllzz('ÄúÒÑ¾­µã»÷¹ıÁË£¡');
+					showAllzz('æ‚¨å·²ç»ç‚¹å‡»è¿‡äº†ï¼');
 					return false;
 				}
 
 				$.post('/wap/ajax_set.php?username='+user_name, {'type':1, 'id':id}, function(num) {
 					if (isNaN(num)) {
-						showAllzz('²Ù×÷Ê§°Ü£¬ÇëÖØĞÂµã»÷£¡');
+						showAllzz('æ“ä½œå¤±è´¥ï¼Œè¯·é‡æ–°ç‚¹å‡»ï¼');
 					} else {
 						_this.find("font").html($.trim(num));
 						writeCookie('GUESTBOOK_'+user_name+'_'+id, 1, 24*3600)
@@ -186,7 +186,7 @@ $('#re_con').on('blur',function(){
 	var re_con = $.trim($("#re_con").val());
 
 	if (re_con == '') {
-		$("#reConError").html('<span class="caution">»Ø¸´ÄÚÈİ²»ÄÜÎª¿Õ£¡</span>');
+		$("#reConError").html('<span class="caution">å›å¤å†…å®¹ä¸èƒ½ä¸ºç©ºï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -198,7 +198,7 @@ $('#re_yzm').on('blur',function(){
 	var re_yzm = $.trim($("#re_yzm").val());
 
 	if (re_yzm == '') {
-		$("#reYzmError").html('<span class="caution">»Ø¸´ÑéÖ¤Âë²»ÄÜÎª¿Õ£¡</span>');
+		$("#reYzmError").html('<span class="caution">å›å¤éªŒè¯ç ä¸èƒ½ä¸ºç©ºï¼</span>');
 		iGuestBookErrorCount++;
 		return false;
 	} else {
@@ -229,7 +229,7 @@ $(document).on("click",'#myReSubmit, #queryReSubmit', function() {
 	}
 })
 
-// Ë¢ĞÂÑéÖ¤Âë
+// åˆ·æ–°éªŒè¯ç 
 $(document).on("click","#vcodesrc,#reVcodesrc", function() {
 	var date=new Date();
 	$(this).attr("src","/include/captcha/captcha.php?datete="+date.getTime());
